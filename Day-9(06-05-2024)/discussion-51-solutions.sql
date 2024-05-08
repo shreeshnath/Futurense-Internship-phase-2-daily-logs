@@ -75,3 +75,7 @@ SELECT productName, SUM(CASE WHEN MONTH(orderDate) BETWEEN 1 AND 3 THEN quantity
 
 Explanation:
 This query analyzes seasonal sales, identifying products with significantly higher sales in the first quarter compared to their annual average. It uses BETWEEN to define seasonal date ranges, aggregates for calculations, and HAVING to filter based on the specified condition.
+
+
+-- shreeshant
+SELECT production Th
