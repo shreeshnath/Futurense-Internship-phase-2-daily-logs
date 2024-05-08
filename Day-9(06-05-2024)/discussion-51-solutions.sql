@@ -60,22 +60,18 @@ This query identifies products ordered in quantities equal to the maximum quanti
 Part 4: Combining Operators for Complex Queries
 Scenario: Customer and Sales Insight
 
-Task 4.1: High-Value Customers in Specific Regions
+-- Task 4.1: High-Value Customers in Specific Regions
 
-code;
+-- code;
 SELECT customerName, country, amount FROM customers JOIN ( SELECT customerNumber, SUM(amount) AS amount FROM payments GROUP BY customerNumber HAVING amount > ANY ( SELECT 0.9 * SUM(amount) FROM payments ) ) AS topCustomers ON customers.customerNumber = topCustomers.customerNumber WHERE country LIKE 'USA' OR country LIKE 'Canada';
 
-Explanation:
-This query identifies high-value customers located in the USA or Canada. It combines LIKE for geographic matching, a subquery with ANY to compare against top payments, and JOIN to retrieve customer details.
+-- Explanation:
+-- This query identifies high-value customers located in the USA or Canada. It combines LIKE for geographic matching, a subquery with ANY to compare against top payments, and JOIN to retrieve customer details.
 
-Task 4.2: Seasonal Sales Analysis
+-- Task 4.2: Seasonal Sales Analysis
 
-code;
+-- code;
 SELECT productName, SUM(CASE WHEN MONTH(orderDate) BETWEEN 1 AND 3 THEN quantityOrdered ELSE 0 END) AS Q1_Sales, AVG(quantityOrdered) AS Avg_Annual_Sales FROM orderdetails JOIN products ON orderdetails.productCode = products.productCode GROUP BY productName HAVING Q1_Sales > 1.5 * Avg_Annual_Sales;
 
-Explanation:
-This query analyzes seasonal sales, identifying products with significantly higher sales in the first quarter compared to their annual average. It uses BETWEEN to define seasonal date ranges, aggregates for calculations, and HAVING to filter based on the specified condition.
-
-
--- shreeshant
-SELECT production Th
+-- Explanation:
+-- This query analyzes seasonal sales, identifying products with significantly higher sales in the first quarter compared to their annual average. It uses BETWEEN to define seasonal date ranges, aggregates for calculations, and HAVING to filter based on the specified condition.
